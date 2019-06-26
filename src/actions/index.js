@@ -8,46 +8,48 @@ const apiUrl = 'https://disneyparent-backend.herokuapp.com/auth/parents';
 
 
 
-export function addPost(title, attraction, children ) {
-    return {
-        type: types.ADD_POST,
-        payload: {
-            title,
-            attraction,
-            children,
-            time: Date.now(),
-        }
-    }
-}
+// export function addPost(title, attraction, children ) {
+//     return {
+//         type: types.ADD_POST,
+//         payload: {
+//             title,
+//             attraction,
+//             children,
+//             time: Date.now(),
+//         }
+//     }
+// }
 
-export function addComment ( username, comment ) {
-    return {
-        type: types.ADD_COMMENT,
-        payload: {
-            username,
-            comment
-        }
-    }
-}
+// export function addComment ( username, comment ) {
+//     return {
+//         type: types.ADD_COMMENT,
+//         payload: {
+//             username,
+//             comment
+//         }
+//     }
+// }
 
-export const register = (username, password, email) => dispatch => {
+export const login = (username, password, email) => dispatch => {
     const credentials = {
         username, 
         password,
         email,
         accountType: 'parent'
     };
-    axios.post(`${apiUrl}/register`)
+    axios.post(`${apiUrl}/login`, credentials)
         .then(res => {
+            dispatch({ type: types.LOGIN, payload: res.data})
             localStorage.setItem('token', res.data.token);
         })
         .catch(err => {
+            dispatch({type: types.ERROR, payload: err.message});
             console.log(err.message);
         })
 }
 
 export const getPosts = () => dispatch => {
-        localAxios()
+        axios
         .get('https://disneyparent-backend.herokuapp.com/posts')
         .then(res => {
             dispatch({type: types.GET_POSTS, payload: res.data});

@@ -6,11 +6,12 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import {createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import App from './App';
 
-import {reducers} from './reducers';
+import combinedReducers from './reducers';
 
 const store = createStore(
-    reducers,
+  combinedReducers,
     compose(
       applyMiddleware(thunk, logger),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

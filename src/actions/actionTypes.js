@@ -9,3 +9,5 @@ export const DELETE_POST = 'DELETE_POST';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const DELETE_PARENT = 'DELETE_PARENT';
 export const ERROR = 'ERROR';
+export const REGISTER = 'REGISTER';
+export const LOGIN = 'LOGIN';

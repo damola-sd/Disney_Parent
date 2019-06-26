@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Post from './Post';
-import { getPosts, getComments } from '../actions'
+import { connect } from "react-redux";
+import { getPosts } from '../actions'
 
 const StyledPosts = styled.div`
     height: auto;
@@ -10,11 +11,12 @@ const StyledPosts = styled.div`
 
 `;
 
-class Posts extends Component {
+class Posts extends React.Component {
 
     componentDidMount() {
         this.props.getPosts();
     }
+
     render() {
         const { posts, gettingPosts } = this.props;
         if(gettingPosts) {
@@ -24,10 +26,10 @@ class Posts extends Component {
             <StyledPosts>
                 <h3> Posts </h3>
                 {
-                    posts.map(post => {
+                    posts.map(item => {
                         return (
                             <Post
-                                post={post}
+                                key={item.id} post={item}
                             />
                         )
                     })
@@ -40,10 +42,12 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
     return {
-      posts: state.postsReducer.posts
+      posts: state.postReducer.posts,
+    //   gettingPosts: state.postsRgettingPosts
     };
   };
 
   export default connect(
-    mapStateToProps
+    mapStateToProps,
+    { getPosts }
   )(Posts);

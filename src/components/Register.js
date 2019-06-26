@@ -3,7 +3,7 @@ import React from 'react';
 class Register extends React.Component {
 
     costructor(props) {
-        super(props);
+        
         this.usernameRef = React.createRef();
         this.passwordRef = React.createRef();
         this.emailRef = React.createRef();

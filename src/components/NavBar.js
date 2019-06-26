@@ -33,10 +33,16 @@ class NavBar extends React.Component {
           <NavLink to={"/"} >
             Home
           </NavLink>
+
+          <NavLink to={"/posts"} >
+            Posts
+          </NavLink>
   
           <NavLink to={"/login"} >
-            Login
+            Login/Register
           </NavLink>
+
+          
         </StyledNavBar>
       );
     }

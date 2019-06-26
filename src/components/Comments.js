@@ -1,11 +1,16 @@
 import React from 'react';
-
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getComments } from '../actions';
 
 class Comments extends React.Component {
     constructor(props) {
-        super(props);
+        
     }
 
+    componentDidMount() {
+        this.getComments();
+    }
     render() {
         return (
             <>
@@ -26,3 +31,13 @@ class Comments extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        comments: state.commentReducer.comments,
+    }
+}
+
+export default connect(
+    mapStateToProps, 
+    { getComments })(Comments);

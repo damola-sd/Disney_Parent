@@ -1,22 +1,30 @@
 import * as types from '../actions/actionTypes';
-import { combinedReducers } from 'redux';
+import { combineReducers } from 'redux';
 
-const initialState = {
+const initialPosts = {
     posts: [],
-    comments: [],
     gettingPosts: false,
-    gettingComments: false,
     isLoggedIn: false,
-    error: ""
+    error: null
 }
 
-export function postsReducer(state = initialState, action) {
+const initialComments = {
+    comments: [],
+    gettingComments: false,
+    error: null
+}
+export const postsReducer = (state = initialPosts, action) => {
     switch (action.type) {
+        case (types.LOGIN):
+            return {
+                ...state,
+                isLoggedIn: true
+            }
         case (types.DELETE_POST):
             return state.filter(posts => posts.id !== action.payload);
 
         case (types.UPDATE_POST):
-            return
+            return types.GET_POSTS;
 
         case (types.GET_POSTS):
             return {
@@ -34,7 +42,7 @@ export function postsReducer(state = initialState, action) {
     }
 }
 
-export function commentsReducer(state = initialState, action) {
+export const commentsReducer = (state = initialComments, action) => {
     switch (action.type) {
         case (types.DELETE_COMMENT):
             return state.filter(comments => comments.id !== action.payload);
@@ -54,9 +62,9 @@ export function commentsReducer(state = initialState, action) {
     }
 }
 
-const reducers = combinedReducers({
-    posts: postsReducer,
-    comments: commentsReducer
+export default combineReducers({
+    postReducer: postsReducer,
+    commentReducer: commentsReducer,
+    
 });
 
-export default reducers;
