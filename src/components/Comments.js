@@ -3,17 +3,32 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getComments } from '../actions';
 
+
+const StyledComments = styled.div`
+
+`;
 class Comments extends React.Component {
     constructor(props) {
-        
+
     }
 
     componentDidMount() {
-        this.getComments();
+        this.props.getComments();
     }
+
+    // getCommentsById = (comments, id) => {
+    //     const newCOmments = comments.filter(comment => { comment.id === id });
+    //     c
+
+    // }
+
+
     render() {
+
+        const sortedComments = this.getCommentsById(this.props.comments, this.props.id);
         return (
             <>
+
                 <h3>Comments</h3>
                 {
                     this.props.comments.map(comment => {
@@ -39,5 +54,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-    mapStateToProps, 
+    mapStateToProps,
     { getComments })(Comments);

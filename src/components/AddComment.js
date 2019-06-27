@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { addComment } from '../actions';
 
+
+const commentRef = React.createRef();
 class AddComment extends React.Component {
+    
+    AddComment = event => {
+        event.preventDefault();
+        this.props.add
+    }
     render() {
         return (
             <form>
                 <input
-                    ref={}
+                    ref={commentRef}
                     name="comment"
                     type="text"
                 />
@@ -19,4 +27,8 @@ class AddComment extends React.Component {
     }
 }
 
-export default AddComment;
+
+
+export default connect(
+    { AddComment }
+)(AddComment);

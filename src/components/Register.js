@@ -1,4 +1,5 @@
 import React from 'react';
+import React from 
 
 class Register extends React.Component {
 

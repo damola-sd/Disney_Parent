@@ -5,6 +5,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Posts from './components/Posts';
+import * as actions from './actions';
 import { HomePage } from './components/HomePage';
 
 class App extends React.Component {

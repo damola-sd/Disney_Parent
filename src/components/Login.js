@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { login } from '../actions/index';
 import styled from 'styled-components';
 
+
 const StyledForm = styled.div`
 
     height: 400px;
@@ -24,14 +25,19 @@ class Login extends React.Component {
         this.usernameRef = React.createRef();
     }
 
-    onLogin() {
+    onLogin(event) {
+        event.preventDefault();
+        let username = this.usernameRef.current.value;
+        let password = this.passwordRef.current.value;
+        let email = this.emailRef.current.value;
+        this.props.login(username, password, email)
         
     }
 
     render() {
         return (
             <StyledForm>
-                <form>
+                <form onSubmit={this.onLogin}>
                     <input
                         ref={this.usernameRef}
                         placeholder="Username"
