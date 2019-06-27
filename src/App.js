@@ -5,7 +5,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Posts from './components/Posts';
-import * as actions from './actions';
+import Register from './components/Register';
 import { HomePage } from './components/HomePage';
 
 class App extends React.Component {
@@ -17,7 +17,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/posts" component={Posts} />
-          
+          <Route exact path="/register" component={Register} />
         </>
       </Router>
     )

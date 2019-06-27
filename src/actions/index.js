@@ -39,7 +39,28 @@ export const login = (username, password, email) => dispatch => {
     };
     axios.post(`${apiUrl}/login`, credentials)
         .then(res => {
+            console.log(res.data.message);
             dispatch({ type: types.LOGIN, payload: res.data})
+            localStorage.setItem('token', res.data.token);
+        })
+        .catch(err => {
+            dispatch({type: types.ERROR, payload: err.message});
+            console.log(err.message);
+        })
+}
+
+
+export const register = (username, password, email) => dispatch => {
+    const credentials = {
+        username, 
+        password,
+        email,
+        accountType: 'parent'
+    };
+    axios.post(`${apiUrl}/register`, credentials)
+        .then(res => {
+            dispatch({ type: types.REGISTER, payload: res.data})
+            
             localStorage.setItem('token', res.data.token);
         })
         .catch(err => {

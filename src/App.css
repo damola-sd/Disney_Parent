@@ -3,5 +3,7 @@
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.651);
+  background-color: black;
+  color: red;
+  width: auto;
 }

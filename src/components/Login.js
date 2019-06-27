@@ -6,14 +6,30 @@ import styled from 'styled-components';
 
 const StyledForm = styled.div`
 
-    height: 400px;
     width: 800px;
-    
+    height: 400px;
+    border: 2px inset red;
+    margin:0 auto;
+
+    div {
+        margin:0 auto;
+    }
 
     input {
+        margin-left: 300px;
         padding: 10px;
         border-radius: 10px;
         margin: 10px;
+        width: 500px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100px;
+        padding: 10px;
+        font-size: 12px;
+        background-color: cyan;
+        margin-left: 200px;
     }
 `;
 
@@ -35,7 +51,7 @@ class Login extends React.Component {
         const username = usernameRef.current.value;
         const password = passwordRef.current.value;
         const email = emailRef.current.value;
-        
+
         this.props.login(username, password, email);
 
     }
@@ -43,27 +59,29 @@ class Login extends React.Component {
     render() {
         return (
             <StyledForm>
-                <form onSubmit={this.onLogin}>
-                    <div></div>
-                    <input
-                        ref={usernameRef}
-                        placeholder="Username"
-                        type="text"
-                    />
-                    <input
-                        ref={emailRef}
-                        placeholder="E-Mail"
-                        type="email"
-                    />
-                    <input
-                        ref={passwordRef}
-                        placeholder="Password"
-                        type="password"
-                    />
-                    <button
-                        type="submit"
-                    >Login</button>
-                </form>
+                <div>
+                    <form onSubmit={this.onLogin}>
+                        <input
+                            ref={usernameRef}
+                            placeholder="Username"
+                            type="text"
+                        />
+                        <input
+                            ref={emailRef}
+                            placeholder="E-Mail"
+                            type="email"
+                        />
+                        <input
+                            ref={passwordRef}
+                            placeholder="Password"
+                            type="password"
+                        /><br />
+                        <button
+                            type="submit"
+                        >Login</button>
+                    </form>
+                </div>
+
             </StyledForm>
         )
     }

@@ -8,7 +8,7 @@ const StyledNavBar = styled.nav`
     justify-content: center;
     font-size: 15px;
     padding: 15px;
-    background-color: pink;
+    background-color: yellow;
     border-bottom: 1px solid transparent;
     color: white;
 
@@ -39,8 +39,13 @@ class NavBar extends React.Component {
           </NavLink>
   
           <NavLink to={"/login"} >
-            Login/Register
+            Login
           </NavLink>
+
+          <NavLink to={"/register"} >
+            Register
+          </NavLink>
+
 
           
         </StyledNavBar>

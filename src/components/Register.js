@@ -1,48 +1,93 @@
 import React from 'react';
-import React from 
+import { connect } from "react-redux";
+import { register } from '../actions';
+import styled from 'styled-components';
+
+const usernameRef = React.createRef();
+const passwordRef = React.createRef();
+const emailRef = React.createRef();
+const secondPasswordRef = React.createRef();
+
+const StyledRegisterForm = styled.div`
+    width: 800px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+    input {
+        
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px;
+        width: 500px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100px;
+        padding: 10px;
+        font-size: 12px;
+        background-color: cyan;
+        margin: 0 auto;
+    }
+`;
 
 class Register extends React.Component {
 
-    costructor(props) {
-        
-        this.usernameRef = React.createRef();
-        this.passwordRef = React.createRef();
-        this.emailRef = React.createRef();
-        this.secondPasswordRef = React.createRef();
+    onRegister = event => {
+        event.preventDefault();
+        const secondPassword = secondPasswordRef.current.value;
+        const username = usernameRef.current.value;
+        const password = passwordRef.current.value;
+        const email = emailRef.current.value;
+        if(password !== secondPassword) {
+            alert("Passwords do not match");
+        }else { 
+            this.props.register(username, password, email);
+        }
     }
     render() {
         return (
-            <div className="register-form">
-                <form>
+            <StyledRegisterForm>
+                <form onSubmit={this.onRegister}>
                     <input
-                        ref = {this.usernameRef}
+                        ref = {usernameRef}
                         placeholder="Username"
                         name="username"
                         type="text"
                     />
                     <input
-                        ref = {this.emailRef}
+                        ref = {emailRef}
                         placeholder="E-Mail"
                         name="email"
                         type="email"
                     />
                     <input
-                        ref = {this.passwordRef}
+                        ref = {passwordRef}
                         placeholder="Password"
                         name="password"
                         type="password"
                     />
                     <input
-                        ref = {this.secondPasswordRef}
+                        ref = {secondPasswordRef}
                         placeholder="Re-Type Password"
                         name="compare_password"
                         type="password"
-                    />
+                    /><br />
                     <button type="Submit"> Register </button>
                 </form>
-            </div>
+            </StyledRegisterForm>
         )
     }
 }
 
-export default Register;
+const mapStateToProps = state => {
+    return {
+        error: state.postReducer.error
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    { register }
+)(Register);
