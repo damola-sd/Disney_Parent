@@ -8,24 +8,18 @@ const StyledComments = styled.div`
 
 `;
 class Comments extends React.Component {
-    constructor(props) {
-
-    }
+    
 
     componentDidMount() {
         this.props.getComments();
     }
 
-    // getCommentsById = (comments, id) => {
-    //     const newCOmments = comments.filter(comment => { comment.id === id });
-    //     c
-
-    // }
+    // this.props.comments{}
 
 
     render() {
 
-        const sortedComments = this.getCommentsById(this.props.comments, this.props.id);
+        // const sortedComments = this.getCommentsById(this.props.comments, this.props.id);
         return (
             <>
 

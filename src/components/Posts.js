@@ -7,8 +7,15 @@ import Comments from './Comments';
 
 const StyledPosts = styled.div`
     height: auto;
-    width: auto;
-    color: red;
+    width: 1000px;
+    margin: 0 auto;
+    
+    h1 {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+        background-color: lightblue;
+    }
 
 `;
 
@@ -22,12 +29,10 @@ class Posts extends React.Component {
     
     render() {
         const { posts,  gettingPosts } = this.props;
-        if (gettingPosts) {
-            return <div> Fetching Posts ...</div>
-        }
+        
         return (
             <StyledPosts>
-                <h3> Posts </h3>
+                <h1> Posts </h1>
                 {
                     posts.map(item => {
                         return (
@@ -35,13 +40,12 @@ class Posts extends React.Component {
                                 <Post
                                     key={item.id} post={item}
                                 />
-
-                                <Comments id={item.id} />
-
                             </>
                         )
                     })
                 }
+
+                <Comments />
 
             </StyledPosts>
         )

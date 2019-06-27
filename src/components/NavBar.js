@@ -8,7 +8,7 @@ const StyledNavBar = styled.nav`
     justify-content: center;
     font-size: 15px;
     padding: 15px;
-    background-color: lightcyan;
+    background-color: pink;
     border-bottom: 1px solid transparent;
     color: white;
 

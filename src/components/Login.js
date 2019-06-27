@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { login } from '../actions/index';
+import { login } from '../actions';
 import styled from 'styled-components';
 
 
@@ -16,40 +16,47 @@ const StyledForm = styled.div`
         margin: 10px;
     }
 `;
+
+const emailRef = React.createRef();
+const passwordRef = React.createRef();
+const usernameRef = React.createRef();
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
-        this.emailRef = React.createRef();
-        this.passwordRef = React.createRef();
-        this.usernameRef = React.createRef();
+    }
+    componentDidMount() {
+        console.log(this.props);
     }
 
-    onLogin(event) {
+    onLogin = (event) => {
+
         event.preventDefault();
-        let username = this.usernameRef.current.value;
-        let password = this.passwordRef.current.value;
-        let email = this.emailRef.current.value;
-        this.props.login(username, password, email)
+        const username = usernameRef.current.value;
+        const password = passwordRef.current.value;
+        const email = emailRef.current.value;
         
+        this.props.login(username, password, email);
+
     }
 
     render() {
         return (
             <StyledForm>
                 <form onSubmit={this.onLogin}>
+                    <div></div>
                     <input
-                        ref={this.usernameRef}
+                        ref={usernameRef}
                         placeholder="Username"
                         type="text"
                     />
                     <input
-                        ref={this.emailRef}
+                        ref={emailRef}
                         placeholder="E-Mail"
                         type="email"
                     />
-                    <input 
-                        ref={this.passwordRef}
+                    <input
+                        ref={passwordRef}
                         placeholder="Password"
                         type="password"
                     />
@@ -63,11 +70,13 @@ class Login extends React.Component {
 }
 
 
-const mapStateToProps = state => ({
-    
-});
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.postReducer.isLoggedIn
+    };
+};
 
 export default connect(
     mapStateToProps,
     { login }
-  )(Login);
+)(Login);
