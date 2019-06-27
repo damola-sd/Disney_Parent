@@ -5,6 +5,7 @@ const initialPosts = {
     posts: [],
     gettingPosts: false,
     isLoggedIn: false,
+    message: "",
     error: null
 }
 
@@ -18,7 +19,8 @@ export const postsReducer = (state = initialPosts, action) => {
         case (types.LOGIN):
             return {
                 ...state,
-                isLoggedIn: true
+                isLoggedIn: true,
+                message: action.payload.message
             }
         case (types.DELETE_POST):
             return state.filter(posts => posts.id !== action.payload);

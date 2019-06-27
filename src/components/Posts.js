@@ -11,10 +11,10 @@ const StyledPosts = styled.div`
     margin: 0 auto;
     
     h1 {
-        border: 1px solid black;
+        
         padding: 5px;
         text-align: center;
-        background-color: lightblue;
+        
     }
 
 `;

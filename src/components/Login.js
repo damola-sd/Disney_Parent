@@ -53,7 +53,7 @@ class Login extends React.Component {
         const email = emailRef.current.value;
 
         this.props.login(username, password, email);
-
+        setTimeout(() => { alert(this.props.message); }, 6000);
     }
 
     render() {
@@ -90,7 +90,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.postReducer.isLoggedIn
+        isLoggedIn: state.postReducer.isLoggedIn,
+        message: state.postReducer.message
     };
 };
 
