@@ -16,17 +16,35 @@ const StyledHomePage = styled.div`
    }
 
    p {
-    margin-left: 45px;
+    margin-left: 25px;
+   }
+
+   .middle-section {
+       height: 400px;
+       width: 1250px;
+       margin: 0 auto;
+       background-color: lightcyan;
+   }
+
+   .footer {
+       height: 50px;
+       text-align: center;
+       width: auto;
+       background-color: lightseagreen;
    }
 `;
 export class HomePage extends React.Component {
     render() {
         return (
             <StyledHomePage>
-                <img src={backgroundImage} alt="Theme park"/>
-                <h3> Disney Parents </h3>
-                <p> This is a community of parents visiting Disney theme parks around the world. If you need help chaperoning your kids, Register and post here and someone will be along to help you in no time. Have a wonderful time!!!</p>
-                
+                <img src={backgroundImage} alt="Theme park" />
+                <div className="middle-section">
+                    <h3> Disney Parents </h3>
+                    <p> This is a community of parents visiting Disney theme parks around the world. If you need help chaperoning your kids, Register and post here and someone will be along to help you in no time. Have a wonderful time!!!</p>
+                </div>
+
+
+                <div className="footer">Copyright 2019</div>
             </StyledHomePage>
         )
     }
