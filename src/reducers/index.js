@@ -4,6 +4,8 @@ import { combineReducers } from 'redux';
 const initialPosts = {
     posts: [],
     gettingPosts: false,
+    addingPosts: false,
+    deletingPosts: false,
     isLoggedIn: false,
     message: "",
     error: null
@@ -23,7 +25,7 @@ export const postsReducer = (state = initialPosts, action) => {
                 message: action.payload.message
             }
         case (types.DELETE_POST):
-            return state.filter(posts => posts.id !== action.payload);
+            return state.posts.filter(posts => posts.id !== action.payload);
 
         case (types.UPDATE_POST):
             return types.GET_POSTS;
@@ -37,7 +39,13 @@ export const postsReducer = (state = initialPosts, action) => {
         case (types.ADD_POST):
             return {
                 ...state,
-                posts: action.payload
+                posts: action.payload,
+                addingPosts: true
+            }
+        case (types.ERROR):
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;
@@ -59,6 +67,11 @@ export const commentsReducer = (state = initialComments, action) => {
                 ...state,
                 comments: action.payload
             }
+        case (types.ERROR):
+            return {
+                ...state,
+                error: action.payload
+            }
         default:
             return state;
     }
@@ -67,6 +80,6 @@ export const commentsReducer = (state = initialComments, action) => {
 export default combineReducers({
     postReducer: postsReducer,
     commentReducer: commentsReducer,
-    
+
 });
 

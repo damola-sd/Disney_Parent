@@ -5,10 +5,11 @@ import styled from "styled-components";
 const StyledNavBar = styled.nav`
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    
+    justify-content: space-around;
     font-size: 15px;
     padding: 15px;
-    background-color: pink;
+    background-color: lightseagreen;
     border-bottom: 1px solid transparent;
     color: white;
 

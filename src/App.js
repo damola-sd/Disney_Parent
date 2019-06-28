@@ -8,6 +8,7 @@ import Posts from './components/Posts';
 import Register from './components/Register';
 import { HomePage } from './components/HomePage';
 
+
 class App extends React.Component {
   render() {
     return (
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/posts" component={Posts} />
           <Route exact path="/register" component={Register} />
+          
         </>
       </Router>
     )

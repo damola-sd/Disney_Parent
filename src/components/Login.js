@@ -8,7 +8,7 @@ const StyledForm = styled.div`
 
     width: 800px;
     height: 400px;
-    border: 2px inset red;
+    border: 2px solid transparent;
     margin:0 auto;
 
     div {
@@ -38,9 +38,7 @@ const passwordRef = React.createRef();
 const usernameRef = React.createRef();
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    
     componentDidMount() {
         console.log(this.props);
     }

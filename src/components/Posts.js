@@ -2,19 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import Post from './Post';
 import { connect } from "react-redux";
-import { getPosts, getComments } from '../actions'
-import Comments from './Comments';
+import { getPosts, getComments, deletePost} from '../actions'
+import AddPost from './AddPost';
 
 const StyledPosts = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: auto;
     width: 1000px;
     margin: 0 auto;
     
     h1 {
-        
         padding: 5px;
-        text-align: center;
-        
+        text-align: center;  
     }
 
 `;
@@ -23,12 +24,19 @@ class Posts extends React.Component {
 
     componentDidMount() {
         this.props.getPosts();
-        
+        this.props.getComments();
     }
 
+    componentDidUpdate() {
+        this.props.getPosts();
+    }
     
+    onDeletePost = id => {
+        this.props.deletePost(id);
+    }
+
     render() {
-        const { posts,  gettingPosts } = this.props;
+        const { posts,  comments } = this.props;
         
         return (
             <StyledPosts>
@@ -38,14 +46,13 @@ class Posts extends React.Component {
                         return (
                             <>
                                 <Post
-                                    key={item.id} post={item}
+                                    key={item.id} post={item} comments={comments} delete={this.onDeletePost}
                                 />
                             </>
                         )
-                    })
+                    }) 
                 }
-
-                <Comments />
+                <AddPost />                
 
             </StyledPosts>
         )
@@ -55,11 +62,11 @@ class Posts extends React.Component {
 const mapStateToProps = state => {
     return {
         posts: state.postReducer.posts,
-        comments: state.commentReducer.comment
+        comments: state.commentReducer.comments
     };
 };
 
 export default connect(
     mapStateToProps,
-    { getPosts, getComments }
+    { getPosts, getComments, deletePost }
 )(Posts);
